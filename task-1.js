@@ -1,26 +1,26 @@
 export function customFilterUnique(array, callback) {
-  const uniqueElements = [];
-  const uniqueKeys = new Set();
+  const countMap = new Map();
   array.forEach((item) => {
     const key = callback(item);
-    if (!uniqueKeys.has(key)) {
-      uniqueKeys.add(key);
-      uniqueElements.push(item);
+    countMap.set(key, (countMap.get(key) || 0) + 1);
+  });
+  const result = [];
+  array.forEach((item) => {
+    const key = callback(item);
+    if (countMap.get(key) === 1) {
+      result.push(item);
     }
   });
-  return uniqueElements;
+  return result;
 }
 
-const objects = [
-  { id: 1, name: "Red" },
-  { id: 2, name: "Green" },
-  { id: 3, name: "Yellow" },
-  { id: 4, name: "Red" },
-  { id: 5, name: "Blue" },
+const arr1 = [
+  { id: 1, name: "test" },
+  { id: 2, name: "foo" },
+  { id: 3, boo: 3 },
+  { id: 2, isAdmin: false },
 ];
+const arr2 = [1, 2, "a", "b", 2, "b", 3];
 
-export function filterByName(object) {
-  return object.name;
-}
-
-const uniqueObjects = customFilterUnique(objects, filterByName);
+console.log(customFilterUnique(arr1, (el) => el.id));
+console.log(customFilterUnique(arr2, (el) => el));

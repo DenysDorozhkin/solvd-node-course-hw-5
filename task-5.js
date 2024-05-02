@@ -1,4 +1,4 @@
-import { customFilterUnique, filterByName } from "./task-1.js";
+import { customFilterUnique } from "./task-1.js";
 import { chunkArray } from "./task-2.js";
 import { customShuffle } from "./task-3.js";
 import { getArrayIntersection, getArrayUnion } from "./task-4.js";
@@ -20,7 +20,7 @@ const mapFunc = (array) => array.map((x) => x * 2);
 const filterFunc = (array) => array.filter((x) => x % 2 === 0);
 const reduceFunc = (array) => array.reduce((acc, current) => acc + current, 0);
 const customFilterUniqueFunc = (array) =>
-  customFilterUnique(array, filterByName);
+  customFilterUnique(array, (el) => el.name);
 const chunkArrayFunc = (array) => chunkArray(array, 4);
 const customShuffleFunc = (array) => customShuffle(array);
 const getArrayIntersectionFunc = (array) =>
